@@ -2,16 +2,15 @@ import tweepy
 import datetime
 import csv
 import sys
+import json
 
-# Replace with your own API keys and access tokens
-consumer_key = 'your_consumer_key'
-consumer_secret = 'your_consumer_secret'
-access_token = 'your_access_token'
-access_token_secret = 'your_access_token_secret'
+# Load API keys and access tokens from config.json
+with open('config.json') as config_file:
+    config = json.load(config_file)
 
 # Set up Tweepy authentication
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+auth = tweepy.OAuthHandler(config['consumer_key'], config['consumer_secret'])
+auth.set_access_token(config['access_token'], config['access_token_secret'])
 
 # Create a Tweepy API object
 api = tweepy.API(auth)
