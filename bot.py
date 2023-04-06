@@ -21,7 +21,8 @@ def fetch_tweets(keyword, filename):
     since_date = (datetime.datetime.now() - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
 
     # Fetch tweets
-    tweets = tweepy.Cursor(api.search, q=query, lang='en', since=since_date, tweet_mode='extended').items()
+    tweets = tweepy.Cursor(api.search_tweets, q=query, lang='en', since=since_date, tweet_mode='extended').items()
+
 
     # Process and save tweet information to CSV
     with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
